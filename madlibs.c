@@ -25,9 +25,15 @@ int longestLine(FILE* fin){
 
 }
 
-void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){
-	while(fscanf(fin, "%c", storyText) == 1){
-		
+void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){	
+	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
+		if(fscanf(fin, "N\0", &) == 1 || /*
+		*/ fscanf(fin, "A\0", &) == 1 || /*
+		*/ fscanf(fin, "V\0", &) == 1 ){
+			storyText[rowIndex][0] = '\0';
+		}else{
+			fscanf(fin, "%s", storyText[rowIndex]);
+		}
 	}
 }
 
@@ -40,6 +46,7 @@ void displayStory(int columns, int rows, char storyText[][columns]){
 	
 }
 
+/*
 //store story and null characters where blanks are
 //but needs to know how many rows
 for(int i = 0; i < numRows; i++) {
@@ -73,4 +80,4 @@ else if(blanksArray[j] == 'V') {
 else if(blanksArray[j] == 'N') {
 	printf("noun: ");
 }
-
+*/
