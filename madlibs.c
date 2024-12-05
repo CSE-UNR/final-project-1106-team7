@@ -51,15 +51,8 @@ int longestLine(FILE* fin){
 }
 
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){	
-	char i;
 	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
-		if(fscanf(fin, "N\n", &i) == 1 || /*
-		*/ fscanf(fin, "A\n", &i) == 1 || /*
-		*/ fscanf(fin, "V\n", &i) == 1 ){
-			storyText[rowIndex][0] = '\0';
-		}else{
-			fscanf(fin, "%s", storyText[rowIndex]);
-		}
+		fgets(storyText[rowIndex], columns, fin);
 	}
 }
 
