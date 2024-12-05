@@ -6,13 +6,27 @@
 #define FILENAME "madlib2.txt"
 
 void getBlanks(FILE* fin, char storyBlanks[]);
-int longestLine(FILE* fin); /* Will return length int */
+int getRows(FILE* fin);
+int longestLine(FILE* fin);
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
 void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
  */ char storyText[][columns]);
 void displayStory(int columns, int rows, char storyText[][columns]);
 
 int main(){
+	FILE* fptr;
+	
+	fptr = fopen(FILENAME, "r");
+	
+	if(fptr == NULL){
+		printf("Could not open %s, please try again.\n", FILE_INPUT);
+		return 0;
+	}
+	
+	char story[getRows(fptr)][longestLine(fptr)];
+	char blanks[]; // How long should the array storing blanks be?
+	
+	fclose(fptr);
 	
 	return 0;
 }
@@ -21,15 +35,20 @@ void getBlanks(FILE* fin, char storyBlanks[]){
 
 }
 
+int getRows(FILE* fin){
+
+}
+
 int longestLine(FILE* fin){
 
 }
 
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){	
+	char i;
 	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
-		if(fscanf(fin, "N\0", &) == 1 || /*
-		*/ fscanf(fin, "A\0", &) == 1 || /*
-		*/ fscanf(fin, "V\0", &) == 1 ){
+		if(fscanf(fin, "N\0", &i) == 1 || /*
+		*/ fscanf(fin, "A\0", &i) == 1 || /*
+		*/ fscanf(fin, "V\0", &i) == 1 ){
 			storyText[rowIndex][0] = '\0';
 		}else{
 			fscanf(fin, "%s", storyText[rowIndex]);
