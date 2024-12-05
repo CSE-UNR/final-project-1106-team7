@@ -5,7 +5,7 @@
 #include <stdio.h>
 #define FILENAME "madlib2.txt"
 
-void getBlanks(FILE* fin, char storyBlanks[]);
+void getBlanks(int rows, int cols, char storyArray[][cols], char blankArray[]);
 int getRows(FILE* fin);
 int longestLine(FILE* fin);
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
@@ -31,8 +31,14 @@ int main(){
 	return 0;
 }
 
-void getBlanks(FILE* fin, char storyBlanks[]){
-	
+void getBlanks(int rows, int cols, char storyArray[][cols], char blankArray[]) {
+	char type;
+	int blankIndex = 0;
+	for(int i = 0; i < rows; i++) {
+		if((storyArray[i][0] == 'A' || storyArray[i][0] == 'V' || storyArray[i][0] == 'N') && (storyArray[i][1] == '\0')) {
+			blankArray[blankIndex] = storyArray[i][0];
+			blankIndex++;
+		}
 	}
 }
 
