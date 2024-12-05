@@ -9,9 +9,8 @@ void getBlanks(FILE* fin, char* storyBlanks[]);
 int longestLine(FILE* fin); /* Will return length int */
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
 void promptUser(FILE* fin, char* storyBlanks[], int columns, int rows, /*
-*/ char* storyText[][columns]);
-void displayStory(char storyBlanks[], int columns, int rows, /*
-*/ char storyText[][columns]);
+ */ char* storyText[][columns]);
+void displayStory(int columns, int rows, char storyText[][columns]);
 
 int main(){
 	
@@ -27,14 +26,16 @@ int longestLine(FILE* fin){
 }
 
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){
-
+	while(fscanf(fin, "%c", storyText) == 1){
+		
+	}
 }
 
 void promptUser(FILE* fin, char* storyBlanks[], int columns, int rows, /*
 */ char* storyText[][columns]){
-
+	
 }
 
-void displayStory(int columns, int rows, char* storyText[][columns]){
-
+void displayStory(int columns, int rows, char storyText[][columns]){
+	
 }
