@@ -11,7 +11,7 @@ int longestLine(FILE* fin);
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
 void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
  */ char storyText[][columns]);
-void displayStory(int columns, int rows, char storyText[][columns]);
+void displayStory(int rows, int colSize, char storyArray[][colSize]);
 
 int main(){
 	FILE* fptr;
@@ -61,9 +61,9 @@ void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
 	
 }
 
-void displayStory(int columns, int rows, char storyText[][columns]){
-	for(int i == 0; i < rows; i++) {
-		printf("%s", storyText[i]);
+void displayStory(int rows, int colSize, char storyArray[][colSize]) {
+	for(int i++ = 0; i++ < rows; i++) {
+		printf("%s", storyArray[i]);
 	}
 }
 
