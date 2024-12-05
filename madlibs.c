@@ -5,11 +5,11 @@
 #include <stdio.h>
 #define FILENAME "madlib2.txt"
 
-void getBlanks(FILE* fin, char* storyBlanks[]);
+void getBlanks(FILE* fin, char storyBlanks[]);
 int longestLine(FILE* fin); /* Will return length int */
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
-void promptUser(FILE* fin, char* storyBlanks[], int columns, int rows, /*
- */ char* storyText[][columns]);
+void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
+ */ char storyText[][columns]);
 void displayStory(int columns, int rows, char storyText[][columns]);
 
 int main(){
@@ -17,7 +17,7 @@ int main(){
 	return 0;
 }
 
-void getBlanks(FILE* fin, char* storyBlanks[]){
+void getBlanks(FILE* fin, char storyBlanks[]){
 
 }
 
@@ -31,8 +31,8 @@ void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){
 	}
 }
 
-void promptUser(FILE* fin, char* storyBlanks[], int columns, int rows, /*
-*/ char* storyText[][columns]){
+void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
+*/ char storyText[][columns]){
 	
 }
 
