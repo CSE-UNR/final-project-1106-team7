@@ -32,7 +32,8 @@ int main(){
 }
 
 void getBlanks(FILE* fin, char storyBlanks[]){
-
+	
+	}
 }
 
 int getRows(FILE* fin){
@@ -46,9 +47,9 @@ int longestLine(FILE* fin){
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){	
 	char i;
 	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
-		if(fscanf(fin, "N\0", &i) == 1 || /*
-		*/ fscanf(fin, "A\0", &i) == 1 || /*
-		*/ fscanf(fin, "V\0", &i) == 1 ){
+		if(fscanf(fin, "N\n", &i) == 1 || /*
+		*/ fscanf(fin, "A\n", &i) == 1 || /*
+		*/ fscanf(fin, "V\n", &i) == 1 ){
 			storyText[rowIndex][0] = '\0';
 		}else{
 			fscanf(fin, "%s", storyText[rowIndex]);
@@ -62,7 +63,9 @@ void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
 }
 
 void displayStory(int columns, int rows, char storyText[][columns]){
-	
+	for(int i == 0; i < rows; i++) {
+		printf("%s", storyText[i]);
+	}
 }
 
 /*
