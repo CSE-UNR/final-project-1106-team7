@@ -101,4 +101,14 @@ else if(blanksArray[j] == 'V') {
 else if(blanksArray[j] == 'N') {
 	printf("noun: ");
 }
+
+// replaces endline characters with spaces
+void deleteEndlines(int columns, int rows, char storyText[][columns]){
+	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
+		for(int colIndex = 0; colIndex < columns; colIndex++){
+			if(storyText[rowIndex][colIndex] == '\n'){
+				storyText[rowIndex][colIndex] = ' ';
+			}
+		}
+	}
 */
