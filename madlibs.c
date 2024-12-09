@@ -5,41 +5,34 @@
 #include <stdio.h>
 #define FILENAME "madlib2.txt"
 
-void getBlanks(int rows, int cols, char storyArray[][cols], char blankArray[]);
 int getRows(FILE* fin);
 int longestLine(FILE* fin);
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
-void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
- */ char storyText[][columns]);
+void promptUser(int columns, int rows, char storyText[][columns]);
 void displayStory(int rows, int colSize, char storyArray[][colSize]);
 
 int main(){
-	FILE* fptr;
+		FILE* fptr;
 	
 	fptr = fopen(FILENAME, "r");
 	
 	if(fptr == NULL){
-		printf("Could not open %s, please try again.\n", FILE_INPUT);
+		printf("Could not open %s, please try again.\n", FILENAME);
 		return 0;
 	}
 	
-	char story[getRows(fptr)][longestLine(fptr)];
-	char blanks[]; // How long should the array storing blanks be?
+	int rows = getRows(fptr);
+	int cols = longestLine(fptr);
+	
+	char story[rows][cols];
+	
+	getStory(fptr, cols, rows, story);
+	promptUser(cols, rows, story);
+	displayStory(cols, rows, story);
 	
 	fclose(fptr);
 	
 	return 0;
-}
-
-void getBlanks(int rows, int cols, char storyArray[][cols], char blankArray[]) {
-	char type;
-	int blankIndex = 0;
-	for(int i = 0; i < rows; i++) {
-		if((storyArray[i][0] == 'A' || storyArray[i][0] == 'V' || storyArray[i][0] == 'N') && (storyArray[i][1] == '\0')) {
-			blankArray[blankIndex] = storyArray[i][0];
-			blankIndex++;
-		}
-	}
 }
 
 int getRows(FILE* fin){
@@ -56,8 +49,7 @@ void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){
 	}
 }
 
-void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
-*/ char storyText[][columns]){
+void promptUser(int columns, int rows, char storyText[][columns]){
 	
 }
 
