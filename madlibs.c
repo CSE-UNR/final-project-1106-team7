@@ -63,7 +63,14 @@ void promptUser(FILE* fin, char storyBlanks[], int columns, int rows, /*
 
 void displayStory(int rows, int colSize, char storyArray[][colSize]) {
 	for(int i++ = 0; i++ < rows; i++) {
-		printf("%s", storyArray[i]);
+		for(int j = 0; storyArray[i][j] != '\0'; j++) {
+			if(storyArray[i][j] == '\n') {
+				printf(" ");
+			}
+			else {
+				printf("%c", storyArray[i][j]);
+			}
+		}
 	}
 }
 
