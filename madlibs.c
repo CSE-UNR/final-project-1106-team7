@@ -3,16 +3,17 @@
 // Final Project-Team 7
 
 #include <stdio.h>
+
 #define FILENAME "madlib2.txt"
+#define ARBCOL 100
 
 int getRows(FILE* fin);
-int longestLine(FILE* fin);
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
 void promptUser(int columns, int rows, char storyText[][columns]);
 void displayStory(int rows, int colSize, char storyArray[][colSize]);
 
 int main(){
-		FILE* fptr;
+	FILE* fptr;
 	
 	fptr = fopen(FILENAME, "r");
 	
@@ -22,13 +23,17 @@ int main(){
 	}
 	
 	int rows = getRows(fptr);
-	int cols = longestLine(fptr);
-	
-	char story[rows][cols];
-	
-	getStory(fptr, cols, rows, story);
-	promptUser(cols, rows, story);
-	displayStory(cols, rows, story);
+
+	// Initialize story array with row func variable and arbitrary column amount
+	char story[rows][ARBCOL];
+
+	// Open file again to read from start
+	fptr = fopen(FILENAME, "r");
+
+	// Run madlibs functions
+	getStory(fptr, ARBCOL, rows, story);
+	promptUser(ARBCOL, rows, story);
+	displayStory(ARBCOL, rows, story);
 	
 	fclose(fptr);
 	
@@ -36,14 +41,21 @@ int main(){
 }
 
 int getRows(FILE* fin){
+	char test;
+	int rowIndex = 0;
 
-}
-
-int longestLine(FILE* fin){
-
+	// Loop counting endline characters
+	while(fscanf(fin, "%c", &test) == 1){
+		if(test == '\n'){
+			rowIndex++;
+		}
+	}
+	
+	return rowIndex;
 }
 
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){	
+	// Just grabs strings
 	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
 		fgets(storyText[rowIndex], columns, fin);
 	}
@@ -54,60 +66,5 @@ void promptUser(int columns, int rows, char storyText[][columns]){
 }
 
 void displayStory(int rows, int colSize, char storyArray[][colSize]) {
-	for(int i++ = 0; i++ < rows; i++) {
-		for(int j = 0; storyArray[i][j] != '\0'; j++) {
-			if(storyArray[i][j] == '\n') {
-				printf(" ");
-			}
-			else {
-				printf("%c", storyArray[i][j]);
-			}
-		}
-	}
+	
 }
-
-/*
-//store story and null characters where blanks are
-//but needs to know how many rows
-for(int i = 0; i < numRows; i++) {
-	char strArr[100];
-	if((fscanf(fin, "N\n", &) == 1) || (fscanf(fin, "V\n", &) == 1) || (fscanf(fin, "A\n", &) == 1)) {
-		storyArray[i][0] = '\0';
-	}
-	else {
-		fscanf(fin, "%s", &storyArray[i]);
-	}
-}
-
-//replace null characters with user input
-for(int i = 0; i < numRows; i++) {
-	int j = 0;
-	if(storyArray[i][0] == '\0') {
-		promptUser(j, storyArray[i][MACRO], blanksArray[i]);
-		scanf("%s", &storyArray[i]);
-		j++;
-	}
-}
-
-//prompt user based on what kind of blank needs to be filled
-printf("Please enter a ");
-if(blanksArray[j] == 'A') {
-	printf("adjective: ");
-}
-else if(blanksArray[j] == 'V') {
-	printf("verb: ");
-}
-else if(blanksArray[j] == 'N') {
-	printf("noun: ");
-}
-
-// replaces endline characters with spaces
-void deleteEndlines(int columns, int rows, char storyText[][columns]){
-	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
-		for(int colIndex = 0; colIndex < columns; colIndex++){
-			if(storyText[rowIndex][colIndex] == '\n'){
-				storyText[rowIndex][colIndex] = ' ';
-			}
-		}
-	}
-*/
