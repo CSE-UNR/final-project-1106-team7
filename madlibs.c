@@ -9,6 +9,7 @@
 void getStory(FILE* fin, int columns, int rows, char storyText[][columns]);
 void promptUser(int columns, int rows, char storyText[][columns]);
 void displayStory(int rows, int colSize, char storyArray[][colSize]);
+void insertInput(int colSize, int row, char storyArray[][colSize]);
 int getRows(FILE* fin);
 
 int main(){
@@ -21,21 +22,19 @@ int main(){
 	}
 	
 	int totalRows = getRows(fptr);
-
-	// Initialize story array with row func variable and arbitrary column amount
+	
 	char story[totalRows][ARBCOL];
-	char input[ARBCOL];
 
-	// Open file again to read from start
 	fptr = fopen(FILENAME, "r");
 	if(fptr == NULL){
 		printf("Could not open %s, please try again.\n", FILENAME);
 		return 0;
 	}
 
-	// Run madlibs functions
 	getStory(fptr, ARBCOL, totalRows, story);
+	
 	promptUser(ARBCOL, totalRows, story);
+	
 	displayStory(totalRows, ARBCOL, story);
 	
 	fclose(fptr);
@@ -53,15 +52,15 @@ void promptUser(int columns, int rows, char storyText[][columns]) {
 	for(int i = 0; i < rows; i++) {
 		if(storyText[i][0] == 'A' && storyText[i][1] == '\n') {
 			printf("Please enter a adjective: ");
-			scanf("%s", storyText[i]);
+			insertInput(columns, i, storyText);
 		}
 		else if(storyText[i][0] == 'V' && storyText[i][1] == '\n') {
 			printf("Please enter a verb: ");
-			scanf("%s", storyText[i]);
+			insertInput(columns, i, storyText);
 		}
 		else if(storyText[i][0] == 'N' && storyText[i][1] == '\n') {
 			printf("Please enter a noun: ");
-			scanf("%s", storyText[i]);
+			insertInput(columns, i, storyText);
 		}
 	}
 }
@@ -76,13 +75,24 @@ void displayStory(int rows, int colSize, char storyArray[][colSize]) {
 			printf(" ");
 		}
 	}
+	printf("\n");
+}
+
+void insertInput(int colSize, int row, char storyArray[][colSize]) {
+	char userInput[colSize];
+	int index = 0;
+	scanf("%s", &userInput);
+	while(userInput[index] != '\0') {
+		storyArray[row][index] = userInput[index];
+		index++;
+	}
+	storyArray[row][index] = '\0';
 }
 
 int getRows(FILE* fin) {
 	char test;
 	int rowIndex = 0;
 
-	// Loop counting endline characters
 	while(fscanf(fin, "%c", &test) == 1){
 		if(test == '\n'){
 			rowIndex++;
