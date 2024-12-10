@@ -61,10 +61,37 @@ void getStory(FILE* fin, int columns, int rows, char storyText[][columns]){
 	}
 }
 
-void promptUser(int columns, int rows, char storyText[][columns]){
-	
+void getStory(FILE* fin, int columns, int rows, char storyText[][columns]) {	
+	for(int rowIndex = 0; rowIndex < rows; rowIndex++){
+		fgets(storyText[rowIndex], columns, fin);
+	}
+}
+
+void promptUser(int columns, int rows, char storyText[][columns]) {
+	for(int i = 0; i < rows; i++) {
+		if(storyText[i][0] == 'A' && storyText[i][1] == '\n') {
+			printf("Please enter a adjective: ");
+			scanf("%s", storyText[i]);
+		}
+		else if(storyText[i][0] == 'V' && storyText[i][1] == '\n') {
+			printf("Please enter a verb: ");
+			scanf("%s", storyText[i]);
+		}
+		else if(storyText[i][0] == 'N' && storyText[i][1] == '\n') {
+			printf("Please enter a noun: ");
+			scanf("%s", storyText[i]);
+		}
+	}
 }
 
 void displayStory(int rows, int colSize, char storyArray[][colSize]) {
-	
+	for(int i = 0; i < rows; i++) {
+		for(int j = 0; storyArray[i][j] != '\n' && storyArray[i][j] != '\0'; j++) {
+			printf("%c", storyArray[i][j]);
+		}
+		
+		if(storyArray[i+1][0] != '.' && storyArray[i+1][0] != '?' && storyArray[i+1][0] != '!' && storyArray[i+1][0] != ',') {
+			printf(" ");
+		}
+	}
 }
