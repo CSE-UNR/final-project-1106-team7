@@ -21,20 +21,21 @@ int main(){
 	}
 	
 	int totalRows = getRows(fptr);
-	
+
+	// Initialize story array with row func variable and arbitrary column amount
 	char story[totalRows][ARBCOL];
 	char input[ARBCOL];
 
+	// Open file again to read from start
 	fptr = fopen(FILENAME, "r");
 	if(fptr == NULL){
 		printf("Could not open %s, please try again.\n", FILENAME);
 		return 0;
 	}
 
+	// Run madlibs functions
 	getStory(fptr, ARBCOL, totalRows, story);
-	
 	promptUser(ARBCOL, totalRows, story);
-	
 	displayStory(totalRows, ARBCOL, story);
 	
 	fclose(fptr);
